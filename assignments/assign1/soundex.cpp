@@ -69,28 +69,41 @@ string lettersToDigits(string s){
     }
     return result;
 }
+
+//string removeReplicates(string s){
+//    string result;
+//    vector<char> v_res;
+//    v_res.push_back(s.at(0));
+//    for (int i = 1; i < s.length(); ++i) {
+//        bool notReplicate = true;
+//        for (int j = 0; j < v_res.size(); ++j) {
+//            if(s[i]==s[i-1]&&s[i]==v_res[j]){
+//                notReplicate = false;
+//            }
+//        }
+//        if(notReplicate){
+//            v_res.push_back(s[i]);
+//        }
+
+//    }
+//    return accumulate(v_res.begin(),v_res.end(),result);
+
+//}
+
 /*This function follows up from above. It takes one string argument 's'
  * which indicates integer string and returns a string, only left with a subset of input string
  * which removes the consecutive replicates of the orginal one. */
 string removeReplicates(string s){
     string result;
     vector<char> v_res;
-    v_res.push_back(s.at(0));
-    for (int i = 1; i < s.length(); ++i) {
-        bool notReplicate = true;
-        for (int j = 0; j < v_res.size(); ++j) {
-            if(s[i]==s[i-1]&&s[i]==v_res[j]){
-                notReplicate = false;
-            }
-        }
-        if(notReplicate){
+    for (int i = 0; i < s.length(); ++i) {
+        if(s[i]!=s[i-1]){
             v_res.push_back(s[i]);
         }
-
     }
     return accumulate(v_res.begin(),v_res.end(),result);
-
 }
+
 /*This function takes one string argument 's' and returns a string which contains no zero.*/
 string removeZeros(string s){
     string result;

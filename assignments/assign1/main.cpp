@@ -3,7 +3,6 @@
 #include "testing/SimpleTest.h"
 #include "perfect.h"
 #include "soundex.h"
-#include "time.h"
 using namespace std;
 bool isPrime(long n);
 int main() {
@@ -14,20 +13,16 @@ int main() {
 
 //findPerfectsRange(1,1000);
 //findPerfectsRange(1001,2000);
-//    clock_t start,end;
-//    start = clock();
 //    findPerfects(20000);
-//    end = clock();
 //findPerfectsSmarter(20000);
     // Comment out the above line and uncomment below line 
     // to switch between running perfect.cpp and soundex.cpp
 //    soundexSearch("res/surnames.txt");
-//    cout << (double)(end-start)/CLOCKS_PER_SEC;
 //    cout<<findNthPerfectEuclid(5)<<endl;
 //    string s = "0202";
 //    s.erase(0,1);
 
-    soundexSearch("C:\\CS_Study\\cs106b\\assignments\\assign1-starter\\res\\surnames.txt");
+//    soundexSearch("C:\\CS_Study\\cs106b\\assignments\\assign1-starter\\res\\surnames.txt");
 //    cout<< soundex("Angelou")<<endl;
     cout << endl << "main() completed." << endl;
     return 0;

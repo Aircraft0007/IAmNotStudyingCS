@@ -1,0 +1,136 @@
+Before submitting this file, make sure that there are no more TODO
+placeholders remaining in the file (and remove this comment too).
+
+Perfect Numbers
+---------------
+
+Before submitting this file, make sure that there are no more TODO
+placeholders remaining in the file (and remove this comment too).
+
+Q1. Roughly how long did it take your computer to do the search? How many perfect numbers were found and what were they?
+A1.  size 20000： 0.629s； size 40000： 2.03s；size 80000： 7.369s；
+4 perfect numbers are founded in range 1-80000 : 6, 28, 496, 8128
+
+Q2. Record the timing results for `findPerfects` that you observed into a table.
+A2. findPerfects(30000) : 1.223s;  findPerfects(60000) : 4.395s; findPerfects(120000) : 13.521s; findPerfects(240000) : 50.365s;
+
+Q3. Does it take the same amount of work to compute `isPerfect` on the number 10 as it does on the number 1000? Why or why not? Does it take the same amount of work for `findPerfects` to search the range of numbers from 1-1000 as it does to search the numbers from 1000-2000? Why or why not?
+A3. (1) It does not take the same amount of work to compute 'isPerfect' on on the number 10 as it does on the number 1000. Since both isPerfect(10) and isPerfect(1000) calls the function 'divisorSum' in its body, the 'divisorSum(1000)' loops 100 times more than 'divisorSum(10)' which takes longer time.
+      (2) It takes the same amount of work to search the numbers from 1-1000 as from 1000-2000, because the amount of loops they take are equal excluding the time takes to print the perfect number to console .
+
+Q4. Extrapolate from the data you gathered and make a prediction: how long will it take `findPerfects` to reach the fifth perfect number?
+A4.  2.03* (33550336/40000)^2 = 1428136.77675s = 396.7h (approximately)
+
+Q5. Do any of the tests still pass even with this broken function? Why or why not?
+A5. 3 tests are passed even with this broken function.
+       Test 1  Confirm 12 and 98765 are not perfect : This one has passed since 12 and 98765 are still not perfect even the rule of computing perfect number has changed.
+       Test 2  Time trials of findPerfects on doubling input sizes: This one will always pass unless the complier goes wrong, it is not affected by arithmetic error.
+       Test 3  Test removing punctuation, digit and space : This one will always pass unless the complier goes wrong
+
+Q6. Describe the testing strategy you used for your test cases to confirm `smarterSum` is working correctly.
+A6. 
+Test 1: Check whether the smarter method takes less time than convnetional method
+STUDENT_TEST("Time trials of findPerfectsSmarter on doubling input sizes"){
+     TIME_OPERATION(30000, findPerfectsSmarter(30000));
+     TIME_OPERATION(60000, findPerfectsSmarter(60000));
+     TIME_OPERATION(120000, findPerfectsSmarter(120000));
+     TIME_OPERATION(240000, findPerfectsSmarter(240000));
+}
+Test 2: Test the results of 'smarterSum' function
+STUDENT_TEST("Confirm smarterSum of small inputs") {
+    EXPECT_EQUAL(smarterSum(1), 0);
+    EXPECT_EQUAL(smarterSum(9), 4);
+    EXPECT_EQUAL(smarterSum(25), 6);
+    EXPECT_EQUAL(smarterSum(6), 6);
+    EXPECT_EQUAL(smarterSum(28), 28);
+}
+Test3 : Test whether the 'isPerfectSmarter' function works correctly for detect perfect numbers.
+STUDENT_TEST("Confirm 6 and 28 are perfect") {
+    EXPECT(isPerfectSmarter(6));
+    EXPECT(isPerfectSmarter(28));
+}
+Test4 : Test whether the 'isPerfectSmarter' function works correctly for detect non perfect numbers.
+
+STUDENT_TEST("Confirm 12 and 98765 are not perfect") {
+   EXPECT(!isPerfectSmarter(12));
+    EXPECT(!isPerfectSmarter(98765));
+}
+Test5: Test whether the 'isPerfectSmarter' function works correctly for detect odd numbers.
+
+STUDENT_TEST("Test oddballs: 0 and 1 are not perfect") {
+     EXPECT(!isPerfectSmarter(0));
+    EXPECT(!isPerfectSmarter(1));
+}
+Test6: Test whether the 'isPerfectSmarter' function works correctly for detect large inputs.
+
+STUDENT_TEST("Confirm 33550336 is perfect") {
+    EXPECT(isPerfectSmarter(33550336));
+}
+
+Q7. Record your timing results for `findPerfectsSmarter` into a table.
+A7. findPerfectsSmarter(30000) : 0.251s; findPerfectsSmarter(60000) : 0.373s;findPerfectsSmarter(120000) : 0.673s;findPerfectsSmarter(240000) : 1.485s;
+
+Q8. Make a prediction: how long will `findPerfectsSmarter` take to reach the fifth perfect number?
+A8. 2.03* (33550336/40000)*sqrt(33550336/40000)=49311.857s = 13.7h
+
+Q9. Explain how you chose your specific test cases and why they lead you to be confident `findNthPerfectEuclid` is working correctly.
+A9. 
+Test1:
+STUDENT_TEST("Confirm the first 5 Numbers obtained by Euclid Method is perfect") {
+   EXPECT(isPerfect(findNthPerfectEuclid(1)));
+   EXPECT(isPerfect(findNthPerfectEuclid(2)));
+   EXPECT(isPerfect(findNthPerfectEuclid(3)));
+   EXPECT(isPerfect(findNthPerfectEuclid(4)));
+   EXPECT(isPerfect(findNthPerfectEuclid(5)));
+}
+Test2:
+STUDENT_TEST("Test isPrime: 0 and 1 are not prime, 2 is prime") {
+    EXPECT(!isPrime(0));
+    EXPECT(!isPrime(1));
+    EXPECT(isPrime(2));
+}
+Test3:
+STUDENT_TEST("Confirm the 5th PerfectEculid is 33550336") {
+    EXPECT_EQUAL(findNthPerfectEuclid(5),33550336);
+}
+
+Soundex
+-------
+
+Q10. What is the Soundex code for "Angelou"? What is the code for your own surname?
+A10.  A524
+
+Q11. Before writing any code, brainstorm your plan of attack and sketch how you might decompose the work into smaller tasks. Briefly describe your decomposition strategy.
+A11. 
+/* Sepearate the whole stretegy task into small parts as step functions. 
+ * Then , bring together all the pre-defined functions to implement the process in a single function named 'soundex' ;
+ * It follows the soundex coding strategy step by step:
+ * 1. trim the name 2. convert the name to digits code 3. remove consecutive replicates
+ * 4. Replace the first integer character with the capitalized first letter of name
+ * 5. Remove any zeros 6. trimming or padding with zeros to make sure the length of final result is exactly 4.
+ * 6. Returns the final result as a string
+ */
+Q12. Think about one or more examples of a class of names that the Soundex system might not work well for. Explain what this class of names is and why the system might incorrectly group them or mis-categorize one of the names.
+A12.
+The given buggy funtion 'removeNonLetters' failed to consider the type of first charater. It added the first charater directly to the result without judging  whether it is a letter charater or not.
+Therefore , in some special cases for which the actual name parameter starts with non-letter charater, this  buggy function failed to trim the word properly.
+ Failed Test Cases:
+STUDENT_TEST("Test names start with empty spaces or punctions or digits or other non-alpha symnols"){
+    string s = "9Alice";
+    string result = removeNonLetters(s);
+    EXPECT_EQUAL(result,"Alice");
+    EXPECT_EQUAL(removeNonLetters("!Alice"), "Alice");
+    EXPECT_EQUAL(removeNonLetters("!Alice"), "Alice");
+    EXPECT_EQUAL(removeNonLetters("9Alice"), "Alice");
+
+}
+
+Q13. Suppose you are a software engineer working for the U.S. government. 
+You have been tasked with implementing a system that collects names as part of the Census survey and analyzes these names using a phonetic algorithm. 
+Your boss suggests using Soundex and notes that the algorithm is only expected to work for ASCII-encoded strings, since supporting Unicode would require extra work and time. 
+What would your response be and why? What representational harms might result from building a system that exclusively uses Soundex and/or ASCII?
+A13.  The deficiencies of Soundex Algorithm might include: 
+          1. It disregards any non letter characters and excess replicates which might be essential for distinguish one name from another in some cases.
+          2. It limits the code length to 4. This may result in too many names in each category and the extra work to identitfy misclassifications from each category will be overburdening.
+
+

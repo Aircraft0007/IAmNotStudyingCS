@@ -24,6 +24,10 @@ int main() {
 
 //    soundexSearch("C:\\CS_Study\\cs106b\\assignments\\assign1-starter\\res\\surnames.txt");
 //    cout<< soundex("Angelou")<<endl;
+    string s = "222025";
+    string ms = removeReplicates(s);
+    cout<<ms<<endl;
+
     cout << endl << "main() completed." << endl;
     return 0;
 }

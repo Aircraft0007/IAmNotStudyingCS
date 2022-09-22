@@ -70,6 +70,39 @@ string lettersToDigits(string s){
     return result;
 }
 
+
+
+/*This function follows up from above. It takes one string argument 's'
+ * which indicates integer string and returns a string, only left with a subset of input string
+ * which removes the consecutive replicates of the orginal one. */
+
+// Method 1:
+string removeReplicates(string s){
+    string result;
+    vector<char> v_res;
+    for (int i = 0; i < s.length(); ++i) {
+        if(s[i]!=s[i-1]){
+            v_res.push_back(s[i]);
+        }
+    }
+    return accumulate(v_res.begin(),v_res.end(),result);
+}
+
+
+//Method 2: Similar to Method 1, using Vector<string> instead of vector<char> for data storage.
+//string removeReplicates(string s){
+//    string result;
+//    Vector<string> v_res;
+//    for (int i = 0; i < s.length(); ++i) {
+//        if(s[i]!=s[i-1]){
+//            v_res.add(charToString(s[i]));
+//        }
+//    }
+//    return accumulate(v_res.begin(),v_res.end(),result);
+//}
+
+
+// Method 3: 使用了两个for loop 比较低效，if 判断中去掉 s[i]==s[i-1] 则可以实现完全去重，故保留此版本留作参考
 //string removeReplicates(string s){
 //    string result;
 //    vector<char> v_res;
@@ -90,19 +123,21 @@ string lettersToDigits(string s){
 
 //}
 
-/*This function follows up from above. It takes one string argument 's'
- * which indicates integer string and returns a string, only left with a subset of input string
- * which removes the consecutive replicates of the orginal one. */
-string removeReplicates(string s){
-    string result;
-    vector<char> v_res;
-    for (int i = 0; i < s.length(); ++i) {
-        if(s[i]!=s[i-1]){
-            v_res.push_back(s[i]);
-        }
-    }
-    return accumulate(v_res.begin(),v_res.end(),result);
-}
+
+// Method 4: input = "222025" output = "2" "0" "2" "5" 感觉后续处理起来不太方便，先留着后面再回来思考
+//string removeReplicates(string s){
+//    string result;
+//    Vector<string> v_res;
+//    for (int i = 0; i < s.length(); ++i) {
+//        if(s[i]!=s[i-1]){
+//            v_res.add(charToString(s[i]));
+//        }
+//    }
+//    result = v_res.toString();
+//    return result.substr(1,result.length()-2);
+//}
+
+
 
 /*This function takes one string argument 's' and returns a string which contains no zero.*/
 string removeZeros(string s){

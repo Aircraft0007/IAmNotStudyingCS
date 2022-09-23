@@ -198,8 +198,8 @@ void soundexSearch(string filepath) {
     Vector<string> v_res;
     while(true){
 
-        string name = getLine("please enter your surname: ");
-        if(toLowerCase(name)=="exit"||toLowerCase(name)=="quit"){
+        string name = getLine("please enter your surname: (PRESS ENTER TO EXIT) ");
+        if(name==""){
             return;
         }
         string nameCode = soundex(name);

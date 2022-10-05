@@ -75,25 +75,72 @@ string lettersToDigits(string s){
 /*This function follows up from above. It takes one string argument 's'
  * which indicates integer string and returns a string, only left with a subset of input string
  * which removes the consecutive replicates of the orginal one. */
-
-// Method 1:
 string removeReplicates(string s){
     string result;
-    vector<char> v_res;
-    for (int i = 0; i < s.length(); ++i) {
-        if(s[i]!=s[i-1]){
-            v_res.push_back(s[i]);
-        }
+    if(s.size()==0||s.size()==1){
+          return s;
     }
-    return accumulate(v_res.begin(),v_res.end(),result);
+    result = s[0];
+    for (int i = 0; i < s.size()-1; ++i) {
+        if(s[i+1]==s[i]){
+            continue;
+        }
+        result+=s[i+1];
+    }
+    return result;
 }
+//string removeReplicates(string s){
+//    string result;
+//    if(s.size()==0||s.size()==1){
+//        return s;
+//    }else{
+//        result = s[0];
+//        for (int i = 1; i < s.size(); ++i) {
+//            if(s[i-1]==s[i]){
+//                continue;
+//            }
+//            result+=s[i];
+//        }
+//    }
+//    return result;
+//}
+//string removeReplicates(string s){
+//    string result;
+//    for (int i = 0; i < s.size(); ++i) {
+//        if(result.back()!=s[i]){
+//            result+=s[i];
+//        }
+//    }
+//    return result;
+//}
+
+// Method 1:
+//string removeReplicates(string s){
+//    string result;
+//    vector<char> v_res;
+//    // edge case:
+//    if(s.length()==0||s.length()==1){
+//        return s;
+//    }
+//    result+=s[0];
+//    for (int i = 1; i < s.length(); ++i) {
+//        if(s[i]!=s[i-1]){
+//            v_res.push_back(s[i]);
+//        }
+//    }
+//    return accumulate(v_res.begin(),v_res.end(),result);
+//}
 
 
 //Method 2: Similar to Method 1, using Vector<string> instead of vector<char> for data storage.
 //string removeReplicates(string s){
 //    string result;
 //    Vector<string> v_res;
-//    for (int i = 0; i < s.length(); ++i) {
+//    if(s.length()==0||s.length()==1){
+//        return s;
+//    }
+//    v_res.add(charToString(s[0]));
+//    for (int i = 1; i < s.length(); ++i) {
 //        if(s[i]!=s[i-1]){
 //            v_res.add(charToString(s[i]));
 //        }

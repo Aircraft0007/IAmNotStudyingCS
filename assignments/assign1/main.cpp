@@ -22,12 +22,12 @@ int main() {
 //    string s = "0202";
 //    s.erase(0,1);
 
-    soundexSearch("C:\\CS_Study\\cs106b\\assignments\\assign1\\res\\surnames.txt");
+//    soundexSearch("C:\\CS_Study\\cs106b\\assignments\\assign1\\res\\surnames.txt");
 //    cout<< soundex("Angelou")<<endl;
 //    string s = "222025";
 //    string ms = removeReplicates(s);
 //    cout<<ms<<endl;
-
+    cout<<removeReplicates("2")<<endl;
     cout << endl << "main() completed." << endl;
     return 0;
 }
